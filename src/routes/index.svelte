@@ -1,5 +1,5 @@
 <svelte:head>
-  <title>Ennote</title>
+	<title>Ennote</title>
 </svelte:head>
 
-<h1>Ennote</h1>
+<h2>My Note</h2>
