@@ -18,3 +18,5 @@ export const notes = writable<RootFolder>(
 			: defaultState
 		: defaultState
 );
+
+export default notes;
