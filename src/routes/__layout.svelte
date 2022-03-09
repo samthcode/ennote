@@ -28,8 +28,6 @@
 </div>
 
 <style lang="scss">
-	@import 'src/scss/variables';
-
 	$nav-width: 20rem;
 	$heading-area-height: 5rem;
 	#heading-area {
@@ -50,7 +48,7 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		@media screen and (max-width: $mobile-width) {
+		@include constrained-media($mobile-width) {
 			width: 100%;
 		}
 		#open-nav-mobile {
@@ -131,19 +129,5 @@
 
 	h1 {
 		color: $primary;
-	}
-
-	@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-
-	:global(*) {
-		margin: 0;
-		padding: 0;
-		color: $white;
-		box-sizing: border-box;
-	}
-
-	:global(body) {
-		font-family: 'Open Sans', sans-serif;
-		height: 100%;
 	}
 </style>

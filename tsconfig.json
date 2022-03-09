@@ -1,3 +1,10 @@
 {
-	"extends": "./.svelte-kit/tsconfig.json"
+	"extends": "./.svelte-kit/tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": ".", // This must be specified if "paths" is.
+		"paths": {
+			"^\\$lib(.*)$": ["<rootDir>/src/lib$1"],
+			"^\\$app(.*)$": ["<rootDir>/.svelte-kit/dev/runtime/app$1"]
+		}
+	}
 }
