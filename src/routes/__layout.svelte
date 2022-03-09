@@ -1,5 +1,13 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
+	import FolderView from '$lib/components/FolderView.svelte';
+
 	let navOpen = false;
+
+	const goHome = () => {
+		goto('/');
+	};
 </script>
 
 <div id="heading-area">
@@ -8,10 +16,12 @@
 		<div class="button-bar" />
 		<div class="button-bar" />
 	</button>
-	<h1>Ennote</h1>
+	<h1 on:click={goHome}>Ennote</h1>
 </div>
 <nav class:nav-open={navOpen}>
-	<a href="/">Home</a>
+	<FolderView />
+
+	<div id="footer"><a href="/about">About</a><span>&copy; Sam T 2022</span></div>
 </nav>
 <div id="main-content">
 	<slot />
@@ -24,7 +34,6 @@
 	$heading-area-height: 5rem;
 	#heading-area {
 		padding: $spacing-default;
-		padding-left: $spacing-default;
 		position: fixed;
 		z-index: 1;
 		top: 0;
@@ -34,6 +43,9 @@
 		background-color: $neutral-400;
 		h1 {
 			display: inline;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 		display: flex;
 		flex-direction: row;
@@ -82,6 +94,25 @@
 			transition: left 0.3s ease-out;
 			&.nav-open {
 				left: 0;
+			}
+		}
+		#footer {
+			padding: $spacing-default;
+			position: fixed;
+			z-index: 1;
+			bottom: 0;
+			left: 0;
+			height: $heading-area-height;
+			width: $nav-width;
+			background-color: $neutral-400;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			& > *:not(:last-child) {
+				margin-right: $spacing-default;
+			}
+			a:hover {
+				color: $primary;
 			}
 		}
 	}
