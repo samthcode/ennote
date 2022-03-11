@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev `-- --open",
+			"problemMatcher": [],
+			"label": "Run dev environment with --open flag.",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
