@@ -19,8 +19,10 @@ export const notes = writable<RootFolder>(
 		: defaultState
 );
 
-notes.subscribe(value => {
-	localStorage.setItem('notes', JSON.stringify(value));
-})
+notes.subscribe((value) => {
+	if (browser) {
+		localStorage.setItem('notes', JSON.stringify(value));
+	}
+});
 
 export default notes;
