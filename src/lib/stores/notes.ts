@@ -19,6 +19,14 @@ export const notes = writable<RootFolder>(
 		: defaultState
 );
 
+// <-- For debugging purposes only -->
+// export const notes = writable<RootFolder>([
+// 	{
+// 		name: 'Folder1',
+// 		contents: [{ name: 'FolderWithVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName', contents: [] }]
+// 	}
+// ]);
+
 notes.subscribe((value) => {
 	if (browser) {
 		localStorage.setItem('notes', JSON.stringify(value));
