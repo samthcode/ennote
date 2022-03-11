@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	import FolderView from '$lib/components/FolderView.svelte';
+	import FolderView from '$lib/components/FolderView/FolderView.svelte';
 
 	let navOpen = false;
 
