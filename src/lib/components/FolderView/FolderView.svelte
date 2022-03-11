@@ -5,7 +5,7 @@
 	import FolderViewNote from './FolderViewNote.svelte';
 </script>
 
-<ul id="notes-and-folders">
+<ul id="folder-view-list">
 	{#each $notes as noteOrFolder}
 		{#if isNote(noteOrFolder)}
 			<FolderViewNote note={noteOrFolder} />
@@ -16,7 +16,14 @@
 </ul>
 
 <style lang="scss">
-	#notes-and-folders {
-		margin-left: $spacing-default;
+	#folder-view-list {
+		@include overflow-ellipsis;
+		list-style-position: inside;
+	}
+
+	:global(.folder-view__li) {
+		margin-left: $spacing-small;
+		@include overflow-ellipsis;
+		list-style-position: inside;
 	}
 </style>

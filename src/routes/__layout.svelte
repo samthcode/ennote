@@ -86,6 +86,7 @@
 		left: 0;
 		background-color: $neutral-400;
 		padding: $spacing-default;
+		@include overflow-ellipsis;
 		@media screen and (max-width: $mobile-width) {
 			width: 80%;
 			left: -100%;

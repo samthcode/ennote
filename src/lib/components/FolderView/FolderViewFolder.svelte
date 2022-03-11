@@ -5,7 +5,7 @@
 	export let folder: Folder;
 </script>
 
-<li>
+<li class="folder-view__li">
 	{folder.name}
 	<ul>
 		{#each folder.contents as noteOrFolder}

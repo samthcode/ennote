@@ -2,4 +2,4 @@
 	export let note: Note;
 </script>
 
-<li>{note.name}</li>
+<li class="folder-view__li">{note.name}</li>
