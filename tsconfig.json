@@ -3,8 +3,9 @@
 	"compilerOptions": {
 		"baseUrl": ".", // This must be specified if "paths" is.
 		"paths": {
-			"^\\$lib(.*)$": ["<rootDir>/src/lib$1"],
-			"^\\$app(.*)$": ["<rootDir>/.svelte-kit/dev/runtime/app$1"]
+			"^\\$app(.*)$": ["<rootDir>/.svelte-kit/dev/runtime/app$1"],
+			"$lib": ["src/lib"],
+			"$lib/*": ["src/lib/*"]
 		}
 	}
 }
