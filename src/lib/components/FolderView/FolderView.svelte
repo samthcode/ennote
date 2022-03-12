@@ -1,12 +1,12 @@
 <script>
 	import notes from '$lib/stores/notes';
-	import { isNote } from '$lib/utils/notes';
+	import { isNote, constructNestedRootFolder } from '$lib/utils/notes';
 	import FolderViewFolder from './FolderViewFolder.svelte';
 	import FolderViewNote from './FolderViewNote.svelte';
 </script>
 
 <ul id="folder-view-list">
-	{#each $notes as noteOrFolder}
+	{#each constructNestedRootFolder($notes) as noteOrFolder}
 		{#if isNote(noteOrFolder)}
 			<FolderViewNote note={noteOrFolder} />
 		{:else}
@@ -24,6 +24,5 @@
 	:global(.folder-view__li) {
 		margin-left: $spacing-small;
 		@include overflow-ellipsis;
-		list-style-position: inside;
 	}
 </style>
