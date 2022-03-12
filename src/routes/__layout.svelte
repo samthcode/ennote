@@ -21,7 +21,9 @@
 <nav class:nav-open={navOpen}>
 	<FolderView />
 
-	<div id="footer"><a href="/about">About</a><span>&copy; Sam T 2022</span></div>
+	<div id="footer" class:nav-open={navOpen}>
+		<a href="/about">About</a><span>&copy; Sam T 2022</span>
+	</div>
 </nav>
 <div id="main-content">
 	<slot />
@@ -103,6 +105,14 @@
 			left: 0;
 			height: $heading-area-height;
 			width: $nav-width;
+			@media screen and (max-width: $mobile-width) {
+				width: 80%;
+				left: -100%;
+				transition: left 0.3s ease-out;
+				&.nav-open {
+					left: 0;
+				}
+			}
 			background-color: $neutral-400;
 			display: flex;
 			align-items: center;
