@@ -1,7 +1,10 @@
 <script lang="ts">
 	import notes from '$lib/stores/notes';
 	import { isNote } from '$lib/utils/notes';
+	import { createEventDispatcher } from 'svelte';
 	import FolderViewNote from './FolderViewNote.svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let folder: Folder;
 
@@ -19,9 +22,9 @@
 	<ul id="inner-list" class:shown={innerListShown}>
 		{#each folder.contents as noteOrFolder}
 			{#if isNote(noteOrFolder)}
-				<FolderViewNote note={noteOrFolder} />
+				<FolderViewNote note={noteOrFolder} on:selecttodo />
 			{:else}
-				<svelte:self folder={noteOrFolder} />
+				<svelte:self folder={noteOrFolder} on:selecttodo />
 			{/if}
 		{/each}
 	</ul>

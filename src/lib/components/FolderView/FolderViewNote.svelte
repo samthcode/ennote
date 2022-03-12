@@ -1,8 +1,14 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
 	export let note: Note;
 </script>
 
-<li class="folder-view__li">{note.name}</li>
+<li class="folder-view__li" on:click={() => dispatch('selecttodo', { id: note.id })}>
+	{note.name}
+</li>
 
 <style lang="scss">
 	li {
