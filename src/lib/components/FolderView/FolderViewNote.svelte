@@ -6,7 +6,7 @@
 	export let note: Note;
 </script>
 
-<li class="folder-view__li" on:click={() => dispatch('selecttodo', { id: note.id })}>
+<li class="folder-view__li" on:click={() => dispatch('selectnote', { id: note.id })}>
 	{note.name}
 </li>
 

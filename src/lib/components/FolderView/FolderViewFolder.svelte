@@ -22,9 +22,9 @@
 	<ul id="inner-list" class:shown={innerListShown}>
 		{#each folder.contents as noteOrFolder}
 			{#if isNote(noteOrFolder)}
-				<FolderViewNote note={noteOrFolder} on:selecttodo />
+				<FolderViewNote note={noteOrFolder} on:selectnote />
 			{:else}
-				<svelte:self folder={noteOrFolder} on:selecttodo />
+				<svelte:self folder={noteOrFolder} on:selectnote />
 			{/if}
 		{/each}
 	</ul>
