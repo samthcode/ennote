@@ -1,14 +1,21 @@
 <script lang="ts">
+	import notes from '$lib/stores/notes';
 	import { isNote } from '$lib/utils/notes';
 	import FolderViewNote from './FolderViewNote.svelte';
 
 	export let folder: Folder;
 
-	let innerListShown = false;
+	$: innerListShown = ($notes.find((nof) => nof.id === folder.id) as FlatFolder).open;
+
+	const setOpen = () => {
+		($notes[$notes.findIndex((nof) => nof.id === folder.id)] as FlatFolder).open = !(
+			$notes.find((nof) => nof.id === folder.id) as FlatFolder
+		).open;
+	};
 </script>
 
 <li class="folder-view__li">
-	<span id="name" on:click={() => (innerListShown = !innerListShown)}>{folder.name}</span>
+	<span id="name" on:click={setOpen}>{folder.name}</span>
 	<ul id="inner-list" class:shown={innerListShown}>
 		{#each folder.contents as noteOrFolder}
 			{#if isNote(noteOrFolder)}
