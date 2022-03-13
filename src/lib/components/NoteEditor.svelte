@@ -33,7 +33,7 @@
 		outline: none;
 		height: calc(100% - $spacing-default - 2.5rem);
     @media screen and (max-width: $mobile-width) {
-      height: calc(100% - $spacing-default - 2.5rem);
+      height: calc(100% - $spacing-default * 3 - 2.5rem);
     }
 	}
 </style>
