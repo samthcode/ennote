@@ -32,7 +32,7 @@
 	}
 
 	:global(.folder-view__li) {
-		margin-left: $spacing-small;
+		padding-left: $spacing-small;
 		@include overflow-ellipsis;
 	}
 </style>
