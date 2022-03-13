@@ -1,3 +1,5 @@
+@use '_variables';
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 :global(*) {
@@ -10,4 +12,5 @@
 
 :global(html, body) {
 	height: 100%;
+	background: variables.$neutral-500;
 }
