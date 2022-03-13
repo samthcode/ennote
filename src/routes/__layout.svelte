@@ -10,28 +10,35 @@
 	};
 </script>
 
-<div id="heading-area">
-	<button id="open-nav-mobile" on:click={() => (navOpen = !navOpen)}>
-		<div class="button-bar" />
-		<div class="button-bar" />
-		<div class="button-bar" />
-	</button>
-	<h1 on:click={goHome}>Ennote</h1>
-</div>
-<nav class:nav-open={navOpen}>
-	<FolderView on:noteselected={() => (navOpen = false)} />
-
-	<div id="footer" class:nav-open={navOpen}>
-		<a href="/about">About</a><span>&copy; Sam T 2022</span>
+<body>
+	<div id="heading-area">
+		<button id="open-nav-mobile" on:click={() => (navOpen = !navOpen)}>
+			<div class="button-bar" />
+			<div class="button-bar" />
+			<div class="button-bar" />
+		</button>
+		<h1 on:click={goHome}>Ennote</h1>
 	</div>
-</nav>
-<div id="main-content">
-	<slot />
-</div>
+	<nav class:nav-open={navOpen}>
+		<FolderView on:noteselected={() => (navOpen = false)} />
+
+		<div id="footer" class:nav-open={navOpen}>
+			<a href="/about">About</a><span>&copy; Sam T 2022</span>
+		</div>
+	</nav>
+	<div id="main-content">
+		<slot />
+	</div>
+</body>
 
 <style lang="scss">
 	$nav-width: 20rem;
 	$heading-area-height: 5rem;
+
+	body {
+		height: calc(100vh - $heading-area-height);
+	}
+
 	#heading-area {
 		padding: $spacing-default;
 		position: fixed;
@@ -131,11 +138,11 @@
 		background-color: $neutral-500;
 		height: 100vh;
 		padding: $spacing-default;
-		box-sizing: border-box;
 		@media screen and (max-width: $mobile-width) {
+			box-sizing: border-box;
 			margin-left: 0;
 			margin-top: $heading-area-height;
-			height: calc(100vh - $heading-area-height)
+			height: calc(100vh - $heading-area-height);
 		}
 	}
 
