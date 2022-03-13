@@ -2,11 +2,21 @@
 	import { goto } from '$app/navigation';
 
 	import FolderView from '$lib/components/FolderView/FolderView.svelte';
+	import currentNote from '$lib/stores/currentNote';
+	import notes from '$lib/stores/notes';
 
 	let navOpen = false;
 
 	const goHome = () => {
 		goto('/');
+	};
+
+	const selectNote = ({ detail: { id } }) => {
+		if ($notes.find((nof) => nof.id === id)) {
+			$currentNote = $notes.find((nof) => nof.id === id) as Note;
+
+			navOpen = false;
+		}
 	};
 </script>
 
@@ -19,7 +29,7 @@
 	<h1 on:click={goHome}>Ennote</h1>
 </div>
 <nav class:nav-open={navOpen}>
-	<FolderView on:noteselected={() => (navOpen = false)} />
+	<FolderView on:selectnote={selectNote} />
 
 	<div id="footer" class:nav-open={navOpen}>
 		<a href="/about">About</a><span>&copy; Sam T 2022</span>
