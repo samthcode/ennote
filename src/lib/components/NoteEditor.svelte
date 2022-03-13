@@ -22,6 +22,7 @@
 		border: none;
 		outline: none;
 		font-size: 1.75rem;
+    height: 2.5rem;
 	}
 
 	textarea {
@@ -30,6 +31,9 @@
 		background-color: transparent;
 		border: none;
 		outline: none;
-		height: calc(100% - $spacing-default * 2);
+		height: calc(100% - $spacing-default - 2.5rem);
+    @media screen and (max-width: $mobile-width) {
+      height: calc(100% - $spacing-default - 2.5rem);
+    }
 	}
 </style>

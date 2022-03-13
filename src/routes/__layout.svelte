@@ -135,6 +135,7 @@
 		@media screen and (max-width: $mobile-width) {
 			margin-left: 0;
 			margin-top: $heading-area-height;
+			height: calc(100vh - $heading-area-height)
 		}
 	}
 
