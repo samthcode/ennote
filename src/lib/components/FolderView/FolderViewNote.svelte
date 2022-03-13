@@ -13,5 +13,9 @@
 <style lang="scss">
 	li {
 		list-style-type: circle;
+		user-select: none;
+		&:hover {
+			cursor: pointer;
+		}
 	}
 </style>
