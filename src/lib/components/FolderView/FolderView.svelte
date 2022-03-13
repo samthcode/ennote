@@ -12,7 +12,7 @@
 		{#if isNote(noteOrFolder)}
 			<FolderViewNote note={noteOrFolder} on:selectnote />
 		{:else}
-			<FolderViewFolder folder={noteOrFolder} on:selectnote />
+			<FolderViewFolder folder={noteOrFolder} on:selectnote on:selectfolder />
 		{/if}
 	{/each}
 </ul>

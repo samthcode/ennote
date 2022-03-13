@@ -10,21 +10,25 @@
 
 	$: innerListShown = ($notes.find((nof) => nof.id === folder.id) as FlatFolder).open;
 
-	const setOpen = () => {
+	const selectFolder = () => {
+		// Open folder
 		($notes[$notes.findIndex((nof) => nof.id === folder.id)] as FlatFolder).open = !(
 			$notes.find((nof) => nof.id === folder.id) as FlatFolder
 		).open;
+
+		// Dispatch selectfolder
+		dispatch('selectfolder', { id: folder.id });
 	};
 </script>
 
 <li class="folder-view__li">
-	<span id="name" on:click={setOpen}>{folder.name}</span>
+	<span id="name" on:click={selectFolder}>{folder.name}</span>
 	<ul id="inner-list" class:shown={innerListShown}>
 		{#each folder.contents as noteOrFolder}
 			{#if isNote(noteOrFolder)}
 				<FolderViewNote note={noteOrFolder} on:selectnote />
 			{:else}
-				<svelte:self folder={noteOrFolder} on:selectnote />
+				<svelte:self folder={noteOrFolder} on:selectnote on:selectfolder />
 			{/if}
 		{/each}
 	</ul>
