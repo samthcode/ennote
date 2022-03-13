@@ -19,7 +19,7 @@
 	<h1 on:click={goHome}>Ennote</h1>
 </div>
 <nav class:nav-open={navOpen}>
-	<FolderView />
+	<FolderView on:noteselected={() => (navOpen = false)} />
 
 	<div id="footer" class:nav-open={navOpen}>
 		<a href="/about">About</a><span>&copy; Sam T 2022</span>
