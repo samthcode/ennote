@@ -10,7 +10,7 @@
 	font-family: 'Open Sans', sans-serif;
 }
 
-:global(html, body) {
-	height: 100%;
+:global(html) {
+	height: 100vh;
 	background: variables.$neutral-500;
 }

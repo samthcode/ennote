@@ -15,14 +15,16 @@
 <textarea bind:value={note.contents} on:change={change} />
 
 <style lang="scss">
+	$name-height: 2.5rem;
 	#name {
+		@include overflow-ellipsis;
 		margin-bottom: $spacing-default;
 		width: 100%;
 		background-color: transparent;
 		border: none;
 		outline: none;
 		font-size: 1.75rem;
-    height: 2.5rem;
+		height: $name-height;
 	}
 
 	textarea {
@@ -31,9 +33,6 @@
 		background-color: transparent;
 		border: none;
 		outline: none;
-		height: calc(100% - $spacing-default - 2.5rem);
-    @media screen and (max-width: $mobile-width) {
-      height: calc(100% - $spacing-default - 2.5rem);
-    }
+		height: calc(100% - $spacing-default - $name-height);
 	}
 </style>

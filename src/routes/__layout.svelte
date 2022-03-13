@@ -10,34 +10,28 @@
 	};
 </script>
 
-<body>
-	<div id="heading-area">
-		<button id="open-nav-mobile" on:click={() => (navOpen = !navOpen)}>
-			<div class="button-bar" />
-			<div class="button-bar" />
-			<div class="button-bar" />
-		</button>
-		<h1 on:click={goHome}>Ennote</h1>
-	</div>
-	<nav class:nav-open={navOpen}>
-		<FolderView on:noteselected={() => (navOpen = false)} />
+<div id="heading-area">
+	<button id="open-nav-mobile" on:click={() => (navOpen = !navOpen)}>
+		<div class="button-bar" />
+		<div class="button-bar" />
+		<div class="button-bar" />
+	</button>
+	<h1 on:click={goHome}>Ennote</h1>
+</div>
+<nav class:nav-open={navOpen}>
+	<FolderView on:noteselected={() => (navOpen = false)} />
 
-		<div id="footer" class:nav-open={navOpen}>
-			<a href="/about">About</a><span>&copy; Sam T 2022</span>
-		</div>
-	</nav>
-	<div id="main-content">
-		<slot />
+	<div id="footer" class:nav-open={navOpen}>
+		<a href="/about">About</a><span>&copy; Sam T 2022</span>
 	</div>
-</body>
+</nav>
+<div id="main-content">
+	<slot />
+</div>
 
 <style lang="scss">
 	$nav-width: 20rem;
 	$heading-area-height: 5rem;
-
-	body {
-		height: calc(100vh - $heading-area-height);
-	}
 
 	#heading-area {
 		padding: $spacing-default;
