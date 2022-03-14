@@ -140,7 +140,7 @@
 	#main-content {
 		margin-left: $nav-width;
 		background-color: $neutral-500;
-		height: 100vh;
+		height: 100%;
 		padding: $spacing-default;
 		@media screen and (max-width: $mobile-width) {
 			box-sizing: border-box;
