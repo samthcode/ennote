@@ -28,6 +28,7 @@
 		padding-bottom: calc($spacing-default / 2);
 		border: none;
 		border-bottom: 2px solid $neutral-400;
+		border-radius: 0;
 		width: 100%;
 		background-color: transparent;
 		outline: none;
