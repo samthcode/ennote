@@ -18,8 +18,8 @@
 	<title>Ennote</title>
 </svelte:head>
 
-{#if $currentNote}
+<!-- {#if $currentNote}
 	<NoteEditor note={$currentNote} on:change={currentNoteChanged} />
 {:else}
 	<p>Select or create a note to begin...</p>
-{/if}
+{/if} -->
