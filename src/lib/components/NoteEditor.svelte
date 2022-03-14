@@ -10,29 +10,38 @@
 	};
 </script>
 
-<input id="name" type="text" bind:value={note.name} on:change={change} />
+<div class="flex-container">
+	<input id="name" type="text" bind:value={note.name} on:change={change} />
 
-<textarea bind:value={note.contents} on:change={change} />
+	<textarea bind:value={note.contents} on:change={change} />
+</div>
 
 <style lang="scss">
-	$name-height: 2.5rem;
+	.flex-container {
+		display: flex;
+		flex-direction: column;
+		flex-wrap:wrap;
+		height: 100%;
+	}
 	#name {
 		@include overflow-ellipsis;
-		margin-bottom: $spacing-default;
+		padding-bottom: calc($spacing-default / 2);
+		border: none;
+		border-bottom: 2px solid $neutral-400;
 		width: 100%;
 		background-color: transparent;
-		border: none;
 		outline: none;
 		font-size: 1.75rem;
-		height: $name-height;
+		height: 2.5rem;
 	}
 
 	textarea {
+		margin-top: calc($spacing-default / 2);
 		resize: none;
 		width: 100%;
 		background-color: transparent;
 		border: none;
 		outline: none;
-		height: calc(100% - $spacing-default - $name-height);
+		flex-grow: 1;
 	}
 </style>
