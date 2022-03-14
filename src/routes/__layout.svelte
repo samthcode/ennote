@@ -20,26 +20,37 @@
 	};
 </script>
 
-<div id="heading-area">
-	<button id="open-nav-mobile" on:click={() => (navOpen = !navOpen)}>
-		<div class="button-bar" />
-		<div class="button-bar" />
-		<div class="button-bar" />
-	</button>
-	<h1 on:click={goHome}>Ennote</h1>
-</div>
-<nav class:nav-open={navOpen}>
-	<FolderView on:selectnote={selectNote} />
-
-	<div id="footer" class:nav-open={navOpen}>
-		<a href="/about">About</a><span>&copy; Sam T 2022</span>
+<div id="all">
+	<div id="heading-area">
+		<button id="open-nav-mobile" on:click={() => (navOpen = !navOpen)}>
+			<div class="button-bar" />
+			<div class="button-bar" />
+			<div class="button-bar" />
+		</button>
+		<h1 on:click={goHome}>Ennote</h1>
 	</div>
-</nav>
-<div id="main-content">
-	<slot />
+	<nav class:nav-open={navOpen}>
+		<FolderView on:selectnote={selectNote} />
+
+		<div id="footer" class:nav-open={navOpen}>
+			<a href="/about">About</a><span>&copy; Sam T 2022</span>
+		</div>
+	</nav>
+	<div id="main-content">
+		<slot />
+	</div>
 </div>
 
 <style lang="scss">
+	#all {
+		height: 100vh;
+		height: -webkit-fill-available;
+		width: 100vw;
+		top: 0;
+		left: 0;
+		position: fixed;
+	}
+
 	$nav-width: 20rem;
 	$heading-area-height: 5rem;
 
@@ -146,7 +157,7 @@
 			box-sizing: border-box;
 			margin-left: 0;
 			margin-top: $heading-area-height;
-			height: calc(100vh - $heading-area-height);
+			height: calc(100% - $heading-area-height);
 		}
 	}
 
