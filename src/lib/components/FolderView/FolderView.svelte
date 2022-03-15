@@ -29,7 +29,7 @@
 			/>
 		{/if}
 	{/each}
-	<li class="folder-view__li--addbtn folder-view__li--notroot">
+	<li class="folder-view__li--addbtn">
 		<AddButton on:click={addNoteOrFolderToRoot} />
 	</li>
 </ul>
