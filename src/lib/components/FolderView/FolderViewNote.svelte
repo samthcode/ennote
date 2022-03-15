@@ -4,9 +4,14 @@
 	const dispatch = createEventDispatcher();
 
 	export let note: Note;
+	export let root: boolean = false;
 </script>
 
-<li class="folder-view__li" on:click={() => dispatch('selectnote', { id: note.id })}>
+<li
+	class:folder-view__li--notroot={!root}
+	class="folder-view__li"
+	on:click={() => dispatch('selectnote', { id: note.id })}
+>
 	{note.name}
 </li>
 

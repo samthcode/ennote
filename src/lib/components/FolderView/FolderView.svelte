@@ -18,12 +18,18 @@
 <ul id="folder-view-list">
 	{#each nestedNotes as noteOrFolder}
 		{#if isNote(noteOrFolder)}
-			<FolderViewNote note={noteOrFolder} on:selectnote />
+			<FolderViewNote root note={noteOrFolder} on:selectnote />
 		{:else}
-			<FolderViewFolder folder={noteOrFolder} on:selectnote on:selectfolder on:addnoteorfolder />
+			<FolderViewFolder
+				root
+				folder={noteOrFolder}
+				on:selectnote
+				on:selectfolder
+				on:addnoteorfolder
+			/>
 		{/if}
 	{/each}
-	<li class="folder-view__li--addbtn">
+	<li class="folder-view__li--addbtn folder-view__li--notroot">
 		<AddButton on:click={addNoteOrFolderToRoot} />
 	</li>
 </ul>
@@ -35,12 +41,14 @@
 	}
 
 	:global(.folder-view__li) {
-		padding-left: $spacing-small;
 		@include overflow-ellipsis;
 	}
 
+	:global(.folder-view__li--notroot) {
+		padding-left: $spacing-default;
+	}
+
 	:global(.folder-view__li--addbtn) {
-		padding-left: $spacing-small;
 		list-style-type: square;
 	}
 </style>

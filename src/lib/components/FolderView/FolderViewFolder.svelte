@@ -5,6 +5,8 @@
 	import AddButton from '../AddButton.svelte';
 	import FolderViewNote from './FolderViewNote.svelte';
 
+	export let root: boolean = false;
+
 	const dispatch = createEventDispatcher();
 
 	export let folder: Folder;
@@ -26,7 +28,7 @@
 	};
 </script>
 
-<li class="folder-view__li">
+<li class="folder-view__li" class:folder-view__li--notroot={!root}>
 	<span id="name" on:click={selectFolder}>{folder.name}</span>
 	<ul id="inner-list" class:shown={innerListShown}>
 		{#each folder.contents as noteOrFolder}
@@ -36,7 +38,7 @@
 				<svelte:self folder={noteOrFolder} on:selectnote on:selectfolder on:addnoteorfolder />
 			{/if}
 		{/each}
-		<li class="folder-view__li--addbtn">
+		<li class="folder-view__li--addbtn folder-view__li--notroot">
 			<AddButton on:click={addNoteOrFolder} />
 		</li>
 	</ul>
