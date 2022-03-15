@@ -118,6 +118,7 @@
 		z-index: 1;
 		top: $heading-area-height;
 		height: calc(100% - $heading-area-height * 2);
+		overflow-y: scroll;
 		left: 0;
 		background-color: $neutral-400;
 		padding: $spacing-default;
