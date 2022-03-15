@@ -2,6 +2,7 @@
 	import notes from '$lib/stores/notes';
 	import { isNote } from '$lib/utils/notes';
 	import { createEventDispatcher } from 'svelte';
+	import AddButton from '../AddButton.svelte';
 	import FolderViewNote from './FolderViewNote.svelte';
 
 	const dispatch = createEventDispatcher();
@@ -19,6 +20,10 @@
 		// Dispatch selectfolder
 		dispatch('selectfolder', { id: folder.id });
 	};
+
+	const addNoteOrFolder = () => {
+		dispatch('addnoteorfolder', folder.id);
+	};
 </script>
 
 <li class="folder-view__li">
@@ -28,9 +33,12 @@
 			{#if isNote(noteOrFolder)}
 				<FolderViewNote note={noteOrFolder} on:selectnote />
 			{:else}
-				<svelte:self folder={noteOrFolder} on:selectnote on:selectfolder />
+				<svelte:self folder={noteOrFolder} on:selectnote on:selectfolder on:addnoteorfolder />
 			{/if}
 		{/each}
+		<li class="folder-view__li--addbtn">
+			<AddButton on:click={addNoteOrFolder} />
+		</li>
 	</ul>
 </li>
 
@@ -48,7 +56,7 @@
 			display: block;
 		}
 	}
-	li {
+	li:not(.folder-view__li--addbtn) {
 		list-style-type: disc;
 	}
 </style>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-
 	import FolderView from '$lib/components/FolderView/FolderView.svelte';
 	import currentNote from '$lib/stores/currentNote';
 	import notes from '$lib/stores/notes';
+	import { v4 as uuid } from 'uuid';
 
 	let navOpen = false;
 
@@ -18,6 +18,17 @@
 			navOpen = false;
 		}
 	};
+
+	const addBareFolder = (name: string, parent: string) => {
+		const id: string = uuid();
+		if (parent !== null) ($notes.find((nof) => nof.id === parent) as FlatFolder).children.push(id);
+		$notes.push({ name, open: false, id, children: [] });
+		console.log($notes);
+	};
+
+	const addNoteOrFolder = ({ detail }) => {
+		addBareFolder('Hello World', detail);
+	};
 </script>
 
 <div id="all">
@@ -30,7 +41,7 @@
 		<h1 on:click={goHome}>Ennote</h1>
 	</div>
 	<nav class:nav-open={navOpen}>
-		<FolderView on:selectnote={selectNote} />
+		<FolderView on:selectnote={selectNote} on:addnoteorfolder={addNoteOrFolder} />
 
 		<div id="footer" class:nav-open={navOpen}>
 			<a href="/about">About</a><span>&copy; Sam T 2022</span>
