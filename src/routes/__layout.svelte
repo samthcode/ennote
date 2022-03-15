@@ -42,11 +42,10 @@
 	</div>
 	<nav class:nav-open={navOpen}>
 		<FolderView on:selectnote={selectNote} on:addnoteorfolder={addNoteOrFolder} />
-
-		<div id="footer" class:nav-open={navOpen}>
-			<a href="/about">About</a><span>&copy; Sam T 2022</span>
-		</div>
 	</nav>
+	<div id="footer" class:nav-open={navOpen}>
+		<a href="/about">About</a><span>&copy; Sam T 2022</span>
+	</div>
 	<div id="main-content">
 		<slot />
 	</div>
@@ -131,32 +130,33 @@
 				left: 0;
 			}
 		}
-		#footer {
-			padding: $spacing-default;
-			position: fixed;
-			z-index: 1;
-			bottom: 0;
-			left: 0;
-			height: $heading-area-height;
-			width: $nav-width;
-			@media screen and (max-width: $mobile-width) {
-				width: 80%;
-				left: -100%;
-				transition: left 0.3s ease-out;
-				&.nav-open {
-					left: 0;
-				}
+	}
+
+	#footer {
+		padding: $spacing-default;
+		position: fixed;
+		z-index: 1;
+		bottom: 0;
+		left: 0;
+		height: $heading-area-height;
+		width: $nav-width;
+		@media screen and (max-width: $mobile-width) {
+			width: 80%;
+			left: -100%;
+			transition: left 0.3s ease-out;
+			&.nav-open {
+				left: 0;
 			}
-			background-color: $neutral-400;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			& > *:not(:last-child) {
-				margin-right: $spacing-default;
-			}
-			a:hover {
-				color: $primary;
-			}
+		}
+		background-color: $neutral-400;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		& > *:not(:last-child) {
+			margin-right: $spacing-default;
+		}
+		a:hover {
+			color: $primary;
 		}
 	}
 
