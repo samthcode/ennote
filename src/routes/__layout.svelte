@@ -117,7 +117,7 @@
 		position: fixed;
 		z-index: 1;
 		top: $heading-area-height;
-		height: calc(100% - $heading-area-height * 2);
+		bottom: $heading-area-height;
 		overflow-y: scroll;
 		left: 0;
 		background-color: $neutral-400;
