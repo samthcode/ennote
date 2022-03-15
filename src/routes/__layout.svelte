@@ -113,11 +113,11 @@
 		}
 	}
 	nav {
-		height: 100%;
 		width: $nav-width;
 		position: fixed;
 		z-index: 1;
 		top: $heading-area-height;
+		bottom: $heading-area-height;
 		left: 0;
 		background-color: $neutral-400;
 		padding: $spacing-default;
