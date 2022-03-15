@@ -23,7 +23,7 @@
 		const id: string = uuid();
 		if (parent !== null) ($notes.find((nof) => nof.id === parent) as FlatFolder).children.push(id);
 		$notes.push({ name, open: false, id, children: [] });
-		console.log($notes);
+		$notes = $notes;
 	};
 
 	const addNoteOrFolder = ({ detail }) => {
