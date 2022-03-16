@@ -2,24 +2,17 @@ import { writable } from 'svelte/store';
 import { browser } from '$app/env';
 import { v4 as uuid } from 'uuid';
 
-const gettingStarted: FlatNote = {
-	name: 'Getting Started',
-	contents: 'Getting Started with Ennote',
-	tags: [],
-	id: uuid()
-};
-
-const defaultState: FlatRootFolder = [
-	gettingStarted,
+const defaultState: Root = [
 	{
-		name: 'From Ennote',
-		open: true,
+		name: 'Getting Started',
+		contents: 'Getting Started with Ennote',
+		tags: [],
 		id: uuid(),
-		children: [gettingStarted.id]
+		path: ''
 	}
 ];
 
-export const notes = writable<FlatRootFolder>(
+export const notes = writable<Root>(
 	browser
 		? localStorage.getItem('notes')
 			? JSON.parse(localStorage.getItem('notes'))
