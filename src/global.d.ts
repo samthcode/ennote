@@ -23,6 +23,7 @@ type NestedFolder = {
 	name: string;
 	id: string;
 	contents: (NestedNote | NestedFolder)[];
+	open: boolean;
 };
 
 type NestedRoot = (NestedNote | NestedFolder)[];
