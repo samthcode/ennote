@@ -5,6 +5,12 @@
 	import notes from '$lib/stores/notes';
 	import { v4 as uuid } from 'uuid';
 
+	// TODO: MUST REMOVE
+	import { onMount } from 'svelte';
+	onMount(() => {
+		localStorage.removeItem('notes');
+	});
+
 	let navOpen = false;
 
 	const goHome = () => {
