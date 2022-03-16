@@ -19,15 +19,8 @@
 		}
 	};
 
-	const addBareFolder = (name: string, parent: string) => {
-		const id: string = uuid();
-		$notes.push({ name, open: false, id, children: [] });
-		if (parent !== null) ($notes.find((nof) => nof.id === parent) as FlatFolder).children.push(id);
-		$notes = $notes;
-	};
-
-	const addNoteOrFolder = ({ detail }) => {
-		addBareFolder('Hello World', detail);
+	const addNote = ({ detail: note }: CustomEvent<Note>) => {
+		console.log(`addNote(): Adding note with name: ${note.name}`);
 	};
 </script>
 
@@ -41,7 +34,7 @@
 		<h1 on:click={goHome}>Ennote</h1>
 	</div>
 	<nav class:nav-open={navOpen}>
-		<FolderView on:selectnote={selectNote} on:addnoteorfolder={addNoteOrFolder} />
+		<FolderView on:selectnote={selectNote} on:addnote={addNote} />
 	</nav>
 	<div id="footer" class:nav-open={navOpen}>
 		<a href="/about">About</a><span>&copy; Sam T 2022</span>
