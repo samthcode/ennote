@@ -3,14 +3,26 @@ type Note = {
 	contents: string;
 	tags: string[];
 	id: string;
+	path: string;
 };
 
-type Folder = { name: string; open: boolean; id: string; contents: Array<Note | Folder> };
+type Root = Note[];
 
-type RootFolder = Array<Note | Folder>;
+type Folder = {
+	name: string;
+	path: string;
+	open: boolean;
+};
 
-type FlatNote = Note;
+type NestedNote = {
+	name: string;
+	id: string;
+};
 
-type FlatFolder = { name: string; open: boolean; id: string; children: string[] };
+type NestedFolder = {
+	name: string;
+	id: string;
+	contents: (NestedNote | NestedFolder)[];
+};
 
-type FlatRootFolder = Array<FlatNote | FlatFolder>;
+type NestedRoot = (NestedNote | NestedFolder)[];
