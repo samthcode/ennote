@@ -20,24 +20,28 @@ const flatNoteOrFolderToNoteOrFolder = (flatNoteOrFolder: FlatNote | FlatFolder)
 	}
 };
 
-export const constructNestedRootFolder = (root: FlatRootFolder): RootFolder => {
+export const constructNestedRootFolder = (r: FlatRootFolder): RootFolder => {
 	const res: RootFolder = [];
 
-	for (const folder of root.filter((nof) => !isFlatNote(nof))) {
+	const root = [...r];
+
+	for (const folder of root.filter(
+		(nof) =>
+			!isFlatNote(nof) &&
+			!root.some((nootof) => {
+				if (isFlatNote(nootof)) return false;
+				return nootof.children.includes(nof.id);
+			})
+	)) {
+		root.splice(
+			root.findIndex((nof) => nof.id === folder.id),
+			1
+		);
 		const f = flatNoteOrFolderToNoteOrFolder(folder) as Folder;
 		f.contents = populateChildren(root, (folder as FlatFolder).children);
 		res.push(f);
 	}
 	for (const other of root) {
-		if (
-			!isFlatNote(other) ||
-			root.some((nof) => {
-				if (isFlatNote(nof)) return false;
-				return (nof as FlatFolder).children.includes(other.id);
-			})
-		) {
-			continue;
-		}
 		res.push(flatNoteOrFolderToNoteOrFolder(other));
 	}
 	return res;
@@ -47,6 +51,10 @@ function populateChildren(root: FlatRootFolder, children: string[]): Array<Note 
 	return children.map((id) => {
 		const element = root.find((nof) => nof.id === id);
 		const e = flatNoteOrFolderToNoteOrFolder(element);
+		root.splice(
+			root.findIndex((nof) => nof.id === id),
+			1
+		);
 		if (!isFlatNote(element)) {
 			(e as Folder).contents = populateChildren(root, element.children);
 		}

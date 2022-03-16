@@ -5,12 +5,6 @@
 	import notes from '$lib/stores/notes';
 	import { v4 as uuid } from 'uuid';
 
-	// TODO: MUST REMOVE
-	import { onMount } from 'svelte';
-	onMount(() => {
-		localStorage.removeItem('notes');
-	});
-
 	let navOpen = false;
 
 	const goHome = () => {
@@ -27,8 +21,8 @@
 
 	const addBareFolder = (name: string, parent: string) => {
 		const id: string = uuid();
-		if (parent !== null) ($notes.find((nof) => nof.id === parent) as FlatFolder).children.push(id);
 		$notes.push({ name, open: false, id, children: [] });
+		if (parent !== null) ($notes.find((nof) => nof.id === parent) as FlatFolder).children.push(id);
 		$notes = $notes;
 	};
 
