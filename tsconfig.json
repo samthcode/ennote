@@ -6,6 +6,7 @@
 			"^\\$app(.*)$": ["<rootDir>/.svelte-kit/dev/runtime/app$1"],
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"]
-		}
+		},
+		"strictNullChecks": true
 	}
 }
