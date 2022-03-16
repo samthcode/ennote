@@ -15,7 +15,7 @@ const defaultState: Root = [
 export const notes = writable<Root>(
 	browser
 		? localStorage.getItem('notes')
-			? JSON.parse(localStorage.getItem('notes'))
+			? JSON.parse(localStorage.getItem('notes') as string)
 			: defaultState
 		: defaultState
 );
