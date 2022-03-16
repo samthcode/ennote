@@ -9,7 +9,7 @@
 	let dispatch = createEventDispatcher();
 
 	const addNoteOrFolderToRoot = () => {
-		dispatch('addnoteorfolder', null);
+		dispatch('addnote', null);
 	};
 
 	$: nestedNotes = constructNestedRootFolder($notes);
@@ -25,7 +25,7 @@
 				folder={noteOrFolder}
 				on:selectnote
 				on:selectfolder
-				on:addnoteorfolder
+				on:addnote
 			/>
 		{/if}
 	{/each}

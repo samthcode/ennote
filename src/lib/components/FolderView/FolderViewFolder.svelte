@@ -23,8 +23,8 @@
 		dispatch('selectfolder', { id: folder.id });
 	};
 
-	const addNoteOrFolder = () => {
-		dispatch('addnoteorfolder', folder.id);
+	const addNote = () => {
+		dispatch('addnote', folder.id);
 	};
 </script>
 
@@ -39,7 +39,7 @@
 			{/if}
 		{/each}
 		<li class="folder-view__li--addbtn folder-view__li--notroot">
-			<AddButton on:click={addNoteOrFolder} />
+			<AddButton on:click={addNote} />
 		</li>
 	</ul>
 </li>
