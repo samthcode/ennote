@@ -11,7 +11,7 @@
 
 	export let folder: Folder;
 
-	$: innerListShown = ($notes.find((nof) => nof.id === folder.id) as FlatFolder).open;
+	$: innerListShown = folder.open;
 
 	const selectFolder = () => {
 		// Open folder
