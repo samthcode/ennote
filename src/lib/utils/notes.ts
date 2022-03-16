@@ -1,3 +1,3 @@
-export const isNote = (noteOrFolder: Note | Folder): noteOrFolder is Note => {
-	return (noteOrFolder as Note).tags !== undefined;
+export const isNestedFolder = (noteOrFolder: NestedFolder | NestedNote): noteOrFolder is NestedFolder => {
+	return (noteOrFolder as NestedFolder).open !== undefined;
 };
