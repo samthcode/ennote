@@ -3,13 +3,12 @@ type Note = {
 	contents: string;
 	tags: string[];
 	id: string;
-	path: string;
+	location: string;
 };
 
 type Root = Note[];
 
 type Folder = {
-	name: string;
 	path: string;
 	open: boolean;
 };
@@ -21,7 +20,6 @@ type NestedNote = {
 
 type NestedFolder = {
 	name: string;
-	id: string;
 	contents: (NestedNote | NestedFolder)[];
 	open: boolean;
 };

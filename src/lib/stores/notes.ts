@@ -8,7 +8,7 @@ const defaultState: Root = [
 		contents: 'Getting Started with Ennote',
 		tags: [],
 		id: uuid(),
-		path: ''
+		location: ''
 	}
 ];
 
