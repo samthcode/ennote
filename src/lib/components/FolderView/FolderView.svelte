@@ -1,6 +1,6 @@
 <script lang="ts">
 	import notes from '$lib/stores/notes';
-	import { isNestedFolder, constructNestedRootFolder } from '$lib/utils/notes';
+	import { isNestedFolder, constructNestedRootFolder } from '$lib/stores/notes';
 	import FolderViewFolder from './FolderViewFolder.svelte';
 	import FolderViewNote from './FolderViewNote.svelte';
 

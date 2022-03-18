@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { isNestedFolder } from '$lib/utils/notes';
+	import { isNestedFolder } from '$lib/stores/notes';
 	import { createEventDispatcher } from 'svelte';
 	import FolderViewNote from './FolderViewNote.svelte';
 
