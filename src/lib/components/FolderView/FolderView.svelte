@@ -1,11 +1,10 @@
 <script lang="ts">
-	import notes from '$lib/stores/notes';
 	import { isNestedFolder, constructNestedRootFolder } from '$lib/stores/notes';
 	import FolderViewFolder from './FolderViewFolder.svelte';
 	import FolderViewNote from './FolderViewNote.svelte';
 
 	let nestedNotes: NestedRoot;
-	$: nestedNotes = constructNestedRootFolder($notes);
+	$: nestedNotes = constructNestedRootFolder();
 </script>
 
 <ul id="folder-view-list">
