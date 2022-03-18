@@ -3,12 +3,10 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let note: Note;
-	export let root: boolean = false;
+	export let note: NestedNote;
 </script>
 
 <li
-	class:folder-view__li--notroot={!root}
 	class="folder-view__li"
 	on:click={() => dispatch('selectnote', { id: note.id })}
 >
