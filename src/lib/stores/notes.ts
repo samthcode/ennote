@@ -9,28 +9,7 @@ const defaultState: Root = [
 		contents: 'Getting Started with Ennote',
 		tags: [],
 		id: uuid(),
-		location: 'From Ennote/Hello There'
-	},
-	{
-		name: 'Template 1',
-		contents: 'Cool Template Thingy',
-		tags: [],
-		id: uuid(),
-		location: 'From Ennote/Templates'
-	},
-	{
-		name: 'Other Thing',
-		contents: 'Hi',
-		tags: [],
-		id: uuid(),
-		location: 'Somewhere Else'
-	},
-	{
-		name: 'This is At Root',
-		contents: 'Hi',
-		tags: [],
-		id: uuid(),
-		location: ''
+		location: 'From Ennote'
 	}
 ];
 
