@@ -28,7 +28,9 @@
 		} else {
 			$folders[folderIndex].open = open;
 		}
-		console.log($folders);
+		$folders = $folders;
+
+		console.log('openFolder - $folders', $folders);
 	};
 </script>
 

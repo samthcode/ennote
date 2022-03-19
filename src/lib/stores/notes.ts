@@ -9,17 +9,40 @@ const defaultState: Root = [
 		contents: 'Getting Started with Ennote',
 		tags: [],
 		id: uuid(),
-		location: 'From Ennote'
+		location: 'From Ennote/Hello There'
+	},
+	{
+		name: 'Template 1',
+		contents: 'Cool Template Thingy',
+		tags: [],
+		id: uuid(),
+		location: 'From Ennote/Templates'
+	},
+	{
+		name: 'Other Thing',
+		contents: 'Hi',
+		tags: [],
+		id: uuid(),
+		location: 'Somewhere Else'
+	},
+	{
+		name: 'This is At Root',
+		contents: 'Hi',
+		tags: [],
+		id: uuid(),
+		location: ''
 	}
 ];
 
-export const notes = writable<Root>(
-	browser
-		? localStorage.getItem('notes')
-			? JSON.parse(localStorage.getItem('notes') as string)
-			: defaultState
-		: defaultState
-);
+// export const notes = writable<Root>(
+// 	browser
+// 		? localStorage.getItem('notes')
+// 			? JSON.parse(localStorage.getItem('notes') as string)
+// 			: defaultState
+// 		: defaultState
+// );
+
+export const notes = writable<Root>(defaultState);
 
 notes.subscribe((value) => {
 	if (browser) {
@@ -48,7 +71,7 @@ const nestFolders = (
 	endNote: NestedNote
 ): NestedFolder | NestedNote => {
 	if (fldrs.length === 0) return endNote;
-	const path = location.join('/') + '/' + fldrs[0];
+	const path = location.length !== 0 ? location.join('/') + '/' + fldrs[0] : fldrs[0];
 	const existingFolder = get(folders).find((f) => f.path == path);
 	return {
 		path,
@@ -58,24 +81,36 @@ const nestFolders = (
 	};
 };
 
+type NoteOrFolderContainer = NestedRoot | (NestedFolder | NestedNote)[];
+
+const findDeepestNestingPlace = (
+	res: NoteOrFolderContainer,
+	location: string[]
+): [NoteOrFolderContainer, string[], string[]] => {
+	const findDeepestNestingPlaceN = (res: NoteOrFolderContainer, location: string[], n: number) => {
+		const folders = res.filter((nof) => isNestedFolder(nof));
+		for (const folder of folders) {
+			if (location[n] == folder.name) {
+				return findDeepestNestingPlaceN((folder as NestedFolder).contents, location, n + 1);
+			}
+		}
+		return [res, location.slice(0, n), location.slice(n)];
+	};
+	return findDeepestNestingPlaceN(res, location, 0);
+};
+
 export const constructNestedRootFolder = (): NestedRoot => {
 	const res: NestedRoot = [];
 	for (const note of get(notes)) {
 		if (note.location == '') {
 			res.push(noteToNestedNote(note));
 		} else {
-			const firstFolderName = note.location.split('/')[0];
-			const existingFolder = get(folders).find((f) => f.path == firstFolderName);
-			const finalFolder: NestedFolder = {
-				path: firstFolderName,
-				name: firstFolderName,
-				contents: [],
-				open: existingFolder ? existingFolder.open : false
-			};
-			finalFolder.contents.push(
-				nestFolders([firstFolderName], note.location.split('/').slice(1), noteToNestedNote(note))
+			const [finalNestingPlace, startingLocation, remaining] = findDeepestNestingPlace(
+				res,
+				note.location.split('/')
 			);
-			res.push(finalFolder);
+
+			finalNestingPlace.push(nestFolders(startingLocation, remaining, noteToNestedNote(note)));
 		}
 	}
 	return res;
