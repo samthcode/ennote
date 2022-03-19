@@ -34,15 +34,15 @@ const defaultState: Root = [
 	}
 ];
 
-// export const notes = writable<Root>(
-// 	browser
-// 		? localStorage.getItem('notes')
-// 			? JSON.parse(localStorage.getItem('notes') as string)
-// 			: defaultState
-// 		: defaultState
-// );
+export const notes = writable<Root>(
+	browser
+		? localStorage.getItem('notes')
+			? JSON.parse(localStorage.getItem('notes') as string)
+			: defaultState
+		: defaultState
+);
 
-export const notes = writable<Root>(defaultState);
+// export const notes = writable<Root>(defaultState);
 
 notes.subscribe((value) => {
 	if (browser) {
