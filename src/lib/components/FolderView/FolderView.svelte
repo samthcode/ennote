@@ -25,8 +25,4 @@
 		@include overflow-ellipsis;
 		list-style-position: inside;
 	}
-
-	:global(.folder-view__li) {
-		@include overflow-ellipsis;
-	}
 </style>

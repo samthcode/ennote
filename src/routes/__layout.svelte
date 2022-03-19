@@ -3,7 +3,6 @@
 	import FolderView from '$lib/components/FolderView/FolderView.svelte';
 	import currentNote from '$lib/stores/currentNote';
 	import notes from '$lib/stores/notes';
-	import { v4 as uuid } from 'uuid';
 
 	let navOpen = false;
 
@@ -12,15 +11,9 @@
 	};
 
 	const selectNote = ({ detail: { id } }) => {
-		if ($notes.find((nof) => nof.id === id)) {
-			$currentNote = $notes.find((nof) => nof.id === id) as Note;
-
-			navOpen = false;
-		}
-	};
-
-	const addNote = ({ detail: note }: CustomEvent<Note>) => {
-		console.log(`addNote(): Adding note with name: ${note.name}`);
+		const note = $notes.find((note) => note.id == id);
+		if (note == undefined) return;
+		$currentNote = note;
 	};
 </script>
 
@@ -34,7 +27,7 @@
 		<h1 on:click={goHome}>Ennote</h1>
 	</div>
 	<nav class:nav-open={navOpen}>
-		<FolderView on:selectnote={selectNote} on:addnote={addNote} />
+		<FolderView on:selectnote={selectNote} />
 	</nav>
 	<div id="footer" class:nav-open={navOpen}>
 		<a href="/about">About</a><span>&copy; Sam T 2022</span>

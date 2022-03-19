@@ -7,7 +7,6 @@
 </script>
 
 <li
-	class="folder-view__li"
 	on:click={() => dispatch('selectnote', { id: note.id })}
 >
 	{note.name}
@@ -20,5 +19,7 @@
 		&:hover {
 			cursor: pointer;
 		}
+		@include overflow-ellipsis;
+		padding-left: $spacing-default;
 	}
 </style>

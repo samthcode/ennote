@@ -55,7 +55,7 @@ export const constructNestedRootFolder = (): NestedRoot => {
 			const finalFolder: NestedFolder = {
 				name: note.location.split('/')[0],
 				contents: [],
-				open: false
+				open: true
 			};
 			finalFolder.contents.push(
 				nestFolders(note.location.split('/').slice(1), noteToNestedNote(note))
