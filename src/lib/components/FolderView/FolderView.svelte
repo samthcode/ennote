@@ -1,23 +1,20 @@
 <script lang="ts">
-	import { isNestedFolder, constructNestedRootFolder } from '$lib/stores/notes';
+	import folders from '$lib/stores/folders';
+	import notes, { isNestedFolder, constructNestedRootFolder } from '$lib/stores/notes';
 	import FolderViewFolder from './FolderViewFolder.svelte';
 	import FolderViewNote from './FolderViewNote.svelte';
-
-	let nestedNotes: NestedRoot;
-	$: nestedNotes = constructNestedRootFolder();
 </script>
 
 <ul id="folder-view-list">
-	{#each nestedNotes as noteOrFolder}
-		{#if !isNestedFolder(noteOrFolder)}
-			<FolderViewNote note={noteOrFolder} on:selectnote />
-		{:else}
-			<FolderViewFolder
-				folder={noteOrFolder}
-				on:selectnote
-			/>
-		{/if}
-	{/each}
+	{#key $notes && $folders}
+		{#each constructNestedRootFolder() as noteOrFolder}
+			{#if !isNestedFolder(noteOrFolder)}
+				<FolderViewNote note={noteOrFolder} on:selectnote />
+			{:else}
+				<FolderViewFolder folder={noteOrFolder} on:selectnote on:openfolder />
+			{/if}
+		{/each}
+	{/key}
 </ul>
 
 <style lang="scss">

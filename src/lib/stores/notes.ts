@@ -1,6 +1,7 @@
 import { get, writable } from 'svelte/store';
 import { browser } from '$app/env';
 import { v4 as uuid } from 'uuid';
+import folders from './folders';
 
 const defaultState: Root = [
 	{
@@ -43,15 +44,17 @@ const noteToNestedNote = (note: Note): NestedNote => {
 
 const nestFolders = (
 	location: string[],
-	folders: string[],
+	fldrs: string[],
 	endNote: NestedNote
 ): NestedFolder | NestedNote => {
-	if (folders.length === 0) return endNote;
+	if (fldrs.length === 0) return endNote;
+	const path = location.join('/') + '/' + fldrs[0];
+	const existingFolder = get(folders).find((f) => f.path == path);
 	return {
-		path: location.join('/') + '/' + folders[0],
-		name: folders[0],
-		contents: [nestFolders([...location, folders[0]], folders.slice(1), endNote)],
-		open: false
+		path,
+		name: fldrs[0],
+		contents: [nestFolders([...location, fldrs[0]], fldrs.slice(1), endNote)],
+		open: existingFolder ? existingFolder.open : false
 	};
 };
 
@@ -62,17 +65,17 @@ export const constructNestedRootFolder = (): NestedRoot => {
 			res.push(noteToNestedNote(note));
 		} else {
 			const firstFolderName = note.location.split('/')[0];
+			const existingFolder = get(folders).find((f) => f.path == firstFolderName);
 			const finalFolder: NestedFolder = {
 				path: firstFolderName,
 				name: firstFolderName,
 				contents: [],
-				open: true
+				open: existingFolder ? existingFolder.open : false
 			};
 			finalFolder.contents.push(
 				nestFolders([firstFolderName], note.location.split('/').slice(1), noteToNestedNote(note))
 			);
 			res.push(finalFolder);
-			console.log('constructNestedRootFolder - finalFolder', finalFolder);
 		}
 	}
 	return res;

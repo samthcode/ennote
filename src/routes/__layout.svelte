@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import FolderView from '$lib/components/FolderView/FolderView.svelte';
 	import currentNote from '$lib/stores/currentNote';
+	import folders from '$lib/stores/folders';
 	import notes from '$lib/stores/notes';
 
 	let navOpen = false;
@@ -15,6 +16,20 @@
 		if (note == undefined) return;
 		$currentNote = note;
 	};
+
+	const openFolder = ({ detail: { path, open } }: CustomEvent<{ path: string; open: boolean }>) => {
+		let folderIndex = $folders.findIndex((f) => f.path == path);
+		if (folderIndex == -1) {
+			const newFolder = {
+				path,
+				open
+			};
+			$folders.push(newFolder);
+		} else {
+			$folders[folderIndex].open = open;
+		}
+		console.log($folders);
+	};
 </script>
 
 <div id="all">
@@ -27,7 +42,7 @@
 		<h1 on:click={goHome}>Ennote</h1>
 	</div>
 	<nav class:nav-open={navOpen}>
-		<FolderView on:selectnote={selectNote} />
+		<FolderView on:selectnote={selectNote} on:openfolder={openFolder} />
 	</nav>
 	<div id="footer" class:nav-open={navOpen}>
 		<a href="/about">About</a><span>&copy; Sam T 2022</span>
