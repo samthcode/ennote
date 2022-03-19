@@ -42,7 +42,8 @@ const noteToNestedNote = (note: Note): NestedNote => {
 };
 
 const nestFolders = (folders: string[], endNote: NestedNote): NestedFolder | NestedNote => {
-	return {name: folders[0], contents: [], open: false}
+	if (folders.length === 0) return endNote;
+	return {name: folders[0], contents: [nestFolders(folders.slice(1), endNote)], open: false}
 }
 
 export const constructNestedRootFolder = (): NestedRoot => {
