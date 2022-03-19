@@ -41,10 +41,19 @@ const noteToNestedNote = (note: Note): NestedNote => {
 	};
 };
 
-const nestFolders = (folders: string[], endNote: NestedNote): NestedFolder | NestedNote => {
+const nestFolders = (
+	location: string[],
+	folders: string[],
+	endNote: NestedNote
+): NestedFolder | NestedNote => {
 	if (folders.length === 0) return endNote;
-	return {name: folders[0], contents: [nestFolders(folders.slice(1), endNote)], open: false}
-}
+	return {
+		path: location.join('/') + '/' + folders[0],
+		name: folders[0],
+		contents: [nestFolders([...location, folders[0]], folders.slice(1), endNote)],
+		open: false
+	};
+};
 
 export const constructNestedRootFolder = (): NestedRoot => {
 	const res: NestedRoot = [];
@@ -52,15 +61,18 @@ export const constructNestedRootFolder = (): NestedRoot => {
 		if (note.location == '') {
 			res.push(noteToNestedNote(note));
 		} else {
+			const firstFolderName = note.location.split('/')[0];
 			const finalFolder: NestedFolder = {
-				name: note.location.split('/')[0],
+				path: firstFolderName,
+				name: firstFolderName,
 				contents: [],
 				open: true
 			};
 			finalFolder.contents.push(
-				nestFolders(note.location.split('/').slice(1), noteToNestedNote(note))
+				nestFolders([firstFolderName], note.location.split('/').slice(1), noteToNestedNote(note))
 			);
 			res.push(finalFolder);
+			console.log('constructNestedRootFolder - finalFolder', finalFolder);
 		}
 	}
 	return res;
