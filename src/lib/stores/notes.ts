@@ -31,6 +31,18 @@ notes.subscribe((value) => {
 
 export default notes;
 
+export const addNote = (name: string, tags: string[], location: string) => {
+	const note: Note = {
+		name,
+		contents: '',
+		tags,
+		id: uuid(),
+		location
+	};
+
+	notes.update((n) => [...n, note]);
+};
+
 export const isNestedFolder = (
 	noteOrFolder: NestedFolder | NestedNote
 ): noteOrFolder is NestedFolder => {
