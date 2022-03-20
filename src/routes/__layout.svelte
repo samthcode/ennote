@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import AddNoteDialogue from '$lib/components/AddNoteDialogue.svelte';
 	import FolderView from '$lib/components/FolderView/FolderView.svelte';
 	import currentNote from '$lib/stores/currentNote';
 	import folders from '$lib/stores/folders';
-	import notes, { constructNestedRootFolder } from '$lib/stores/notes';
+	import notes, { addNote, constructNestedRootFolder } from '$lib/stores/notes';
 
 	let navOpen = false;
 
@@ -44,6 +45,29 @@
 
 		updateNestedNotes();
 	};
+
+	const addNoteToRoot = ({
+		detail: { name, location }
+	}: CustomEvent<{ name: string; location: string }>) => {
+		addNote(name, [], location);
+
+		let folderPath = '';
+		for (const folder of location.split('/')) {
+			folderPath += folderPath == '' ? folder : '/' + folder;
+			let folderIndex = $folders.findIndex((f) => f.path == folderPath);
+			if (folderIndex == -1) {
+				const newFolder = {
+					path: folderPath,
+					open: true
+				};
+				$folders.push(newFolder);
+			} else {
+				$folders[folderIndex].open = true;
+			}
+		}
+
+		updateNestedNotes();
+	};
 </script>
 
 <svelte:head>
@@ -60,6 +84,9 @@
 		<h1 on:click={goHome}>Ennote</h1>
 	</div>
 	<nav class:nav-open={navOpen}>
+		<div id="add-note">
+			<AddNoteDialogue on:addnote={addNoteToRoot} />
+		</div>
 		<FolderView bind:notes={nestedNotes} on:selectnote={selectNote} on:openfolder={openFolder} />
 	</nav>
 	<div id="footer" class:nav-open={navOpen}>
@@ -71,6 +98,9 @@
 </div>
 
 <style lang="scss">
+	#add-note {
+		margin-bottom: $spacing-default;
+	}
 	#all {
 		height: 100vh;
 		height: -webkit-fill-available;
