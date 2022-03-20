@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import FolderView from '$lib/components/FolderView/FolderView.svelte';
 	import currentNote from '$lib/stores/currentNote';
 	import folders from '$lib/stores/folders';
@@ -17,6 +18,10 @@
 		if (note == undefined) return;
 		$currentNote = note;
 		navOpen = false;
+		// If we aren't on the homepage (where the user can actually see the note), go there
+		if ($page.url.pathname !== '/') {
+			goto('/');
+		}
 	};
 
 	const openFolder = ({ detail: { path, open } }: CustomEvent<{ path: string; open: boolean }>) => {
