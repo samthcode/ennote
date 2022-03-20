@@ -10,12 +10,17 @@
 
 	const addNote = () => {
 		if (name.value.trim() == '') {
-			error = "Please enter a value for the note's name.";
+			error = "The note's name may not be empty (or completely whitespace).";
 			return;
 		}
-		if (!location.value.match(/^(?:(?:[a-zA-Z-_ .]+?\/)*[a-zA-Z-_ .]+)?$/)) {
+		if (!name.value.match(/^[a-zA-Z0-9- ._]+$/)) {
 			error =
-				"Please constrain your path to this format: 'base-folder/other_folder/.../final-folder";
+				"Please constrain your note name to alphabetical characters, numbers, or some select symbols such as: 'this is my-note_here.'";
+			return;
+		}
+		if (!location.value.match(/^(?:(?:[a-zA-Z0-9-_ .]+?\/)*[a-zA-Z0-9-_ .]+)?$/)) {
+			error =
+				"Please constrain your path to this format: 'base folder/other_folder/.../final-folder";
 			return;
 		}
 
