@@ -30,8 +30,6 @@
 			$folders[folderIndex].open = open;
 		}
 		$folders = $folders;
-
-		console.log('openFolder - $folders', $folders);
 	};
 </script>
 
