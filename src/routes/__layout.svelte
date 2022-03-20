@@ -4,10 +4,15 @@
 	import FolderView from '$lib/components/FolderView/FolderView.svelte';
 	import currentNote from '$lib/stores/currentNote';
 	import folders from '$lib/stores/folders';
-	import { updateNestedNotes } from '$lib/stores/nestedNotes';
-	import notes from '$lib/stores/notes';
+	import notes, { constructNestedRootFolder } from '$lib/stores/notes';
 
 	let navOpen = false;
+
+	let nestedNotes = constructNestedRootFolder();
+
+	const updateNestedNotes = () => {
+		nestedNotes = constructNestedRootFolder();
+	};
 
 	const goHome = () => {
 		goto('/');
@@ -51,7 +56,7 @@
 		<h1 on:click={goHome}>Ennote</h1>
 	</div>
 	<nav class:nav-open={navOpen}>
-		<FolderView on:selectnote={selectNote} on:openfolder={openFolder} />
+		<FolderView bind:notes={nestedNotes} on:selectnote={selectNote} on:openfolder={openFolder} />
 	</nav>
 	<div id="footer" class:nav-open={navOpen}>
 		<a href="/about">About</a><span>&copy; Sam T 2022</span>

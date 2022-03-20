@@ -1,12 +1,13 @@
 <script lang="ts">
-	import nestedNotes from '$lib/stores/nestedNotes';
 	import { isNestedFolder } from '$lib/stores/notes';
 	import FolderViewFolder from './FolderViewFolder.svelte';
 	import FolderViewNote from './FolderViewNote.svelte';
+
+	export let notes: NestedRoot;
 </script>
 
 <ul id="folder-view-list">
-	{#each $nestedNotes as noteOrFolder}
+	{#each notes as noteOrFolder}
 		{#if !isNestedFolder(noteOrFolder)}
 			<FolderViewNote note={noteOrFolder} on:selectnote />
 		{:else}
