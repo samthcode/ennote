@@ -84,6 +84,7 @@
 		width: $nav-width;
 		background-color: $neutral-400;
 		h1 {
+			user-select: none;
 			display: inline;
 			&:hover {
 				cursor: pointer;
