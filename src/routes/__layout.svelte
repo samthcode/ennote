@@ -15,6 +15,7 @@
 		const note = $notes.find((note) => note.id == id);
 		if (note == undefined) return;
 		$currentNote = note;
+		navOpen = false;
 	};
 
 	const openFolder = ({ detail: { path, open } }: CustomEvent<{ path: string; open: boolean }>) => {
