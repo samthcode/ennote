@@ -15,11 +15,13 @@
 </script>
 
 <li>
-	{#if innerListShown}
-		<i class="fa-regular fa-folder-open" />
-	{:else}
-		<i class="fa-regular fa-folder-closed" />
-	{/if}<span id="name" on:click={openFolder}>{folder.name}</span>
+	<span id="name" on:click={openFolder}>
+		{#if innerListShown}
+			<i class="fa-regular fa-folder-open" />
+		{:else}
+			<i class="fa-regular fa-folder-closed" />
+		{/if}{folder.name}</span
+	>
 	<ul id="inner-list" class:shown={innerListShown}>
 		{#each folder.contents as noteOrFolder}
 			{#if !isNestedFolder(noteOrFolder)}
