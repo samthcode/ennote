@@ -25,6 +25,14 @@ on the device. Irreversible.
 <style lang="scss">
 	.error {
 		margin-block: $spacing-default;
+		background-color: red;
+		border-radius: 2px;
+		color: $white;
+		margin-bottom: $spacing-small;
+		padding: 0.5rem;
+		word-break: break-word;
+		white-space: normal;
+		width: 100%;
 	}
 
 	button {
