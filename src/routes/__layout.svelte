@@ -3,6 +3,7 @@
 	import FolderView from '$lib/components/FolderView/FolderView.svelte';
 	import currentNote from '$lib/stores/currentNote';
 	import folders from '$lib/stores/folders';
+	import { updateNestedNotes } from '$lib/stores/nestedNotes';
 	import notes from '$lib/stores/notes';
 
 	let navOpen = false;
@@ -30,6 +31,8 @@
 			$folders[folderIndex].open = open;
 		}
 		$folders = $folders;
+
+		updateNestedNotes();
 	};
 </script>
 
