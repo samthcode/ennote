@@ -19,6 +19,6 @@
 <style lang="scss">
 	#folder-view-list {
 		@include overflow-ellipsis;
-		list-style-position: inside;
+		list-style: none;
 	}
 </style>

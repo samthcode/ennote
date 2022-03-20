@@ -46,6 +46,10 @@
 	};
 </script>
 
+<svelte:head>
+	<script src="https://kit.fontawesome.com/ef69c66e38.js" crossorigin="anonymous"></script>
+</svelte:head>
+
 <div id="all">
 	<div id="heading-area">
 		<button id="open-nav-mobile" on:click={() => (navOpen = !navOpen)}>

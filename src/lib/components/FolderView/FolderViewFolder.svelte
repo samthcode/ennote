@@ -15,7 +15,11 @@
 </script>
 
 <li>
-	<span id="name" on:click={openFolder}>{folder.name}</span>
+	{#if innerListShown}
+		<i class="fa-regular fa-folder-open" />
+	{:else}
+		<i class="fa-regular fa-folder-closed" />
+	{/if}<span id="name" on:click={openFolder}>{folder.name}</span>
 	<ul id="inner-list" class:shown={innerListShown}>
 		{#each folder.contents as noteOrFolder}
 			{#if !isNestedFolder(noteOrFolder)}
@@ -29,9 +33,9 @@
 
 <style lang="scss">
 	li {
-		list-style-type: disc;
+		padding-top: 0.25rem;
+		list-style-type: none;
 		@include overflow-ellipsis;
-		padding-left: $spacing-default;
 	}
 	#name {
 		user-select: none;
@@ -45,5 +49,6 @@
 		&.shown {
 			display: block;
 		}
+		padding-left: $spacing-default;
 	}
 </style>
