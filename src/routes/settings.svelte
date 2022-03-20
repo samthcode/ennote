@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { browser } from '$app/env';
+import currentNote from '$lib/stores/currentNote';
 
 	import folders from '$lib/stores/folders';
 	import notes from '$lib/stores/notes';
 
 	const clearAll = () => {
-		$notes = [];
-		$folders = [];
 		if (!confirm('Are you sure you want to remove every singe note and folder from your device?'))
 			return;
+		$notes = [];
+		$folders = [];
+		$currentNote = null;
 		if (browser) location.reload();
 	};
 </script>
