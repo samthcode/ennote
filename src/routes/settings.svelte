@@ -21,13 +21,22 @@ import currentNote from '$lib/stores/currentNote';
 	This page can cause irreversible damage to your notes. Use with extreme caution.
 </div>
 
-<button on:click={clearAll}>Clear all notes and folders</button> Clears all notes and folders stored
-on the device. Irreversible.
+<div id="btn-list">
+	<button on:click={clearAll}>Clear all notes and folders</button> Clears all notes and folders stored
+	on the device. Irreversible.
+</div>
 
 <style lang="scss">
+	#btn-list {
+		display: grid;
+		grid-template-columns: max-content auto;
+		gap: $spacing-default;
+		align-items: center;
+		margin-block: $spacing-default;
+	}
 	.error {
 		margin-block: $spacing-default;
-		background-color: red;
+		background-color: $error-red;
 		border-radius: 2px;
 		color: $white;
 		margin-bottom: $spacing-small;
@@ -43,6 +52,8 @@ on the device. Irreversible.
 		outline: none;
 		border: none;
 		padding: $spacing-small;
-		margin-right: $spacing-default;
+		&:hover {
+			background-color: $neutral-300;
+		}
 	}
 </style>

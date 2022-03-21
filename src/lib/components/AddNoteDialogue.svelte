@@ -43,7 +43,7 @@
 
 <style lang="scss">
 	.error {
-		background-color: red;
+		background-color: $error-red;
 		border-radius: 2px;
 		color: $white;
 		margin-bottom: $spacing-small;
