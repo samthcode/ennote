@@ -84,6 +84,7 @@
 		<h1 on:click={goHome}>Ennote</h1>
 	</div>
 	<nav class:nav-open={navOpen}>
+		<h3 id="add-note-title">Add Note</h3>
 		<div id="add-note">
 			<AddNoteDialogue on:addnote={addNoteToRoot} />
 		</div>
@@ -100,6 +101,11 @@
 </div>
 
 <style lang="scss">
+	#add-note-title {
+		margin-top: none;
+		margin-bottom: $spacing-small;
+		font-weight: 500;
+	}
 	#add-note {
 		margin-bottom: $spacing-default;
 	}

@@ -35,9 +35,9 @@
 {#if error !== ''}
 	<div class="error">Error: {error}</div>
 {/if}
-<input type="text" id="name" bind:this={name} on:focus={() => (error = '')} />
+<input placeholder="Name" type="text" id="name" bind:this={name} on:focus={() => (error = '')} />
 <div id="loc-and-btn">
-	<input type="text" id="location" bind:this={location} on:focus={() => (error = '')} />
+	<input placeholder="Location" type="text" id="location" bind:this={location} on:focus={() => (error = '')} />
 	<button on:click={addNote}><i class="fa-regular fa-square-plus" /></button>
 </div>
 
@@ -76,6 +76,10 @@
 		line-height: 2rem;
 		font-size: 1.1rem;
 		padding: 0.5rem;
+
+		&::placeholder {
+			font-size: 1rem;
+		}
 	}
 	button {
 		margin-left: $spacing-small;
