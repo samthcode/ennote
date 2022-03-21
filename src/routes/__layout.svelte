@@ -16,6 +16,7 @@
 	};
 
 	const goHome = () => {
+		navOpen = false;
 		goto('/');
 	};
 
@@ -91,9 +92,10 @@
 		<FolderView bind:notes={nestedNotes} on:selectnote={selectNote} on:openfolder={openFolder} />
 	</nav>
 	<div id="footer" class:nav-open={navOpen}>
-		<a href="/settings"><i class="fa-solid fa-gear" /></a><a href="/about">About</a><span
-			>&copy; Sam T 2022</span
-		>
+		<a on:click={() => (navOpen = false)} href="/settings"><i class="fa-solid fa-gear" /></a><a
+			on:click={() => (navOpen = false)}
+			href="/about">About</a
+		><span>&copy; Sam T 2022</span>
 	</div>
 	<div id="main-content">
 		<slot />
