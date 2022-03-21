@@ -20,7 +20,7 @@
 		}
 		if (!location.value.match(/^(?:(?:[a-zA-Z0-9-_ .]+?\/)*[a-zA-Z0-9-_ .]+)?$/)) {
 			error =
-				"Please constrain your path to this format: 'base folder/other_folder/.../final-folder";
+				"Please constrain your path to this format: 'base folder/other_folder/.../final-folder'";
 			return;
 		}
 
