@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, getContext } from 'svelte';
+
+	const { closeNav } = getContext('nav');
 
 	export let note: Note;
 
@@ -11,16 +13,16 @@
 </script>
 
 <div class="flex-container">
-	<input id="name" type="text" bind:value={note.name} on:change={change} />
+	<input on:focus={closeNav} id="name" type="text" bind:value={note.name} on:change={change} />
 
-	<textarea bind:value={note.contents} on:change={change} />
+	<textarea on:focus={closeNav} bind:value={note.contents} on:change={change} />
 </div>
 
 <style lang="scss">
 	.flex-container {
 		display: flex;
 		flex-direction: column;
-		flex-wrap:wrap;
+		flex-wrap: wrap;
 		height: 100%;
 	}
 	#name {

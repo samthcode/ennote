@@ -6,6 +6,7 @@
 	import currentNote from '$lib/stores/currentNote';
 	import folders from '$lib/stores/folders';
 	import notes, { addNote, constructNestedRootFolder } from '$lib/stores/notes';
+	import { setContext } from 'svelte';
 
 	let navOpen = false;
 
@@ -69,6 +70,14 @@
 
 		updateNestedNotes();
 	};
+
+	const closeNav = () => {
+		navOpen = false;
+	};
+
+	setContext('nav', {
+		closeNav
+	});
 </script>
 
 <svelte:head>
@@ -92,8 +101,8 @@
 		<FolderView bind:notes={nestedNotes} on:selectnote={selectNote} on:openfolder={openFolder} />
 	</nav>
 	<div id="footer" class:nav-open={navOpen}>
-		<a on:click={() => (navOpen = false)} href="/settings"><i class="fa-solid fa-gear" /></a><a
-			on:click={() => (navOpen = false)}
+		<a on:click={closeNav} href="/settings"><i class="fa-solid fa-gear" /></a><a
+			on:click={closeNav}
 			href="/about">About</a
 		><span>&copy; Sam T 2022</span>
 	</div>
