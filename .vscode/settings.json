@@ -12,5 +12,6 @@
 		".eslintrc.cjs": true,
 		".npmrc": true
 	},
-	"explorerExclude.backup": null
+	"explorerExclude.backup": null,
+	"scss.lint.unknownAtRules": "ignore"
 }

@@ -7,6 +7,7 @@
 	import folders from '$lib/stores/folders';
 	import notes, { addNote, constructNestedRootFolder } from '$lib/stores/notes';
 	import { setContext } from 'svelte';
+	import '../app.scss';
 
 	let navOpen = false;
 
@@ -92,10 +93,10 @@
 			<div class="button-bar" />
 			<div class="button-bar" />
 		</button>
-		<h1 on:click={goHome}>Ennote</h1>
+		<h1 class="text-4xl font-extrabold" on:click={goHome}>Ennote</h1>
 	</div>
 	<nav class:nav-open={navOpen}>
-		<h3 id="add-note-title">Add Note</h3>
+		<h3 id="add-note-title" class="text-xl">Add Note</h3>
 		<div id="add-note">
 			<AddNoteDialogue on:addnote={addNoteToRoot} />
 		</div>

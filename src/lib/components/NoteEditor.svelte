@@ -16,7 +16,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </svelte:head>
 
-<div class="flex-container">
+<div class="flex flex-col flex-wrap h-full overflow-x-hidden text-ellipsis whitespace-nowrap border-none">
 	<input on:focus={closeNav} id="name" type="text" bind:value={note.name} on:change={change} />
 	<input
 		on:focus={closeNav}
@@ -30,16 +30,8 @@
 </div>
 
 <style lang="scss">
-	.flex-container {
-		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap;
-		height: 100%;
-	}
 	#name {
-		@include overflow-ellipsis;
 		padding-bottom: calc($spacing-default / 2);
-		border: none;
 		border-bottom: 2px solid $neutral-400;
 		border-radius: 0;
 		width: 100%;
