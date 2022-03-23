@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher, getContext } from 'svelte';
 
-	const { closeNav } = getContext('nav');
+	const { closeNav } = getContext('layout');
 
 	export let note: Note;
 
@@ -18,6 +18,13 @@
 
 <div class="flex-container">
 	<input on:focus={closeNav} id="name" type="text" bind:value={note.name} on:change={change} />
+	<input
+		on:focus={closeNav}
+		id="location"
+		type="text"
+		bind:value={note.location}
+		on:change={change}
+	/>
 
 	<textarea on:focus={closeNav} bind:value={note.contents} on:change={change} />
 </div>
@@ -41,9 +48,19 @@
 		font-size: 1.75rem;
 		height: 2.5rem;
 	}
-
-	textarea {
+	#location {
 		margin-top: calc($spacing-default / 2);
+		height: 2rem;
+		font-size: 1.25rem;
+		line-height: 1.25rem;
+		border-radius: 1rem;
+		border: none;
+		outline: none;
+		background-color: $primary;
+		padding: 0.75rem;
+	}
+	textarea {
+		margin-top: $spacing-default;
 		resize: none;
 		width: 100%;
 		background-color: transparent;

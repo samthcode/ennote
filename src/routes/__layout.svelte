@@ -75,8 +75,9 @@
 		navOpen = false;
 	};
 
-	setContext('nav', {
-		closeNav
+	setContext('layout', {
+		closeNav,
+		updateNestedNotes
 	});
 </script>
 
