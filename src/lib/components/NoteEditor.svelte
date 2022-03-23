@@ -50,5 +50,6 @@
 		border: none;
 		outline: none;
 		flex-grow: 1;
+		font-size: 1.25rem;
 	}
 </style>
