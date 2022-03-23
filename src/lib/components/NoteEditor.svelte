@@ -12,6 +12,10 @@
 	};
 </script>
 
+<svelte:head>
+	<meta name="viewport" content="maximum-scale=1" />
+</svelte:head>
+
 <div class="flex-container">
 	<input on:focus={closeNav} id="name" type="text" bind:value={note.name} on:change={change} />
 
