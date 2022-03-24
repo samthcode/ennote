@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/env';
-import currentNote from '$lib/stores/currentNote';
+	import ErrorAlert from '$lib/components/ErrorAlert.svelte';
+	import currentNote from '$lib/stores/currentNote';
 
 	import folders from '$lib/stores/folders';
 	import notes from '$lib/stores/notes';
@@ -17,8 +18,10 @@ import currentNote from '$lib/stores/currentNote';
 
 <h2>Settings</h2>
 
-<div class="error">
-	This page can cause irreversible damage to your notes. Use with extreme caution.
+<div class="mt-6">
+	<ErrorAlert>
+		This page can cause irreversible damage to your notes. Use with extreme caution.
+	</ErrorAlert>
 </div>
 
 <div id="btn-list">
@@ -33,17 +36,6 @@ import currentNote from '$lib/stores/currentNote';
 		gap: $spacing-default;
 		align-items: center;
 		margin-block: $spacing-default;
-	}
-	.error {
-		margin-block: $spacing-default;
-		background-color: $error-red;
-		border-radius: 2px;
-		color: $white;
-		margin-bottom: $spacing-small;
-		padding: 0.5rem;
-		word-break: break-word;
-		white-space: normal;
-		width: 100%;
 	}
 
 	button {

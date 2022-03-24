@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import ErrorAlert from './ErrorAlert.svelte';
 
 	const dispatch = createEventDispatcher();
 
@@ -33,25 +34,21 @@
 </script>
 
 {#if error !== ''}
-	<div class="error">Error: {error}</div>
+	<ErrorAlert>Error: {error}</ErrorAlert>
 {/if}
 <input placeholder="Name" type="text" id="name" bind:this={name} on:focus={() => (error = '')} />
 <div id="loc-and-btn">
-	<input placeholder="Location" type="text" id="location" bind:this={location} on:focus={() => (error = '')} />
+	<input
+		placeholder="Location"
+		type="text"
+		id="location"
+		bind:this={location}
+		on:focus={() => (error = '')}
+	/>
 	<button on:click={addNote}><i class="fa-regular fa-square-plus" /></button>
 </div>
 
 <style lang="scss">
-	.error {
-		background-color: $error-red;
-		border-radius: 2px;
-		color: $white;
-		margin-bottom: $spacing-small;
-		padding: 0.5rem;
-		word-break: break-word;
-		white-space: normal;
-		width: 100%;
-	}
 	#loc-and-btn {
 		display: flex;
 		height: 2rem;
