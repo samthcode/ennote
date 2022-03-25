@@ -45,6 +45,8 @@
 		border-bottom: 2px solid $neutral-400;
 		border-radius: 0;
 		font-size: 1.75rem;
+		line-height: 1.75rem;
+		flex-shrink: 0;
 		height: 2.5rem;
 	}
 	#location {
