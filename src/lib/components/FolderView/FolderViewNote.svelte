@@ -12,7 +12,10 @@
 
 <style lang="scss">
 	li {
+		box-sizing: content-box;
 		list-style: none;
+		height: 1.5rem;
+		line-height: 1.5rem;
 		i {
 			margin-right: 0.5em;
 			height: 0.75rem;

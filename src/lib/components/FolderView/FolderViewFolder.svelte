@@ -15,7 +15,7 @@
 </script>
 
 <li>
-	<span id="name" on:click={openFolder}>
+	<span id="name" class="w-full inline-block" on:click={openFolder}>
 		{#if innerListShown}
 			<i class="fa-regular fa-folder-open" />
 		{:else}
@@ -44,6 +44,8 @@
 		&:hover {
 			cursor: pointer;
 		}
+		height: 1.5rem;
+		line-height: 1.5rem;
 	}
 	#inner-list {
 		list-style-position: inside;
